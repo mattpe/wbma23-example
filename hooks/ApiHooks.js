@@ -33,6 +33,7 @@ const useAuthentication = () => {
     // TODO: post login to api
     // https://media.mw.metropolia.fi/wbma/docs/#api-Authentication-PostAuth
   };
+  return {postLogin};
 };
 
 // https://media.mw.metropolia.fi/wbma/docs/#api-User
@@ -40,6 +41,7 @@ const useUser = () => {
   const checkUser = async () => {
     // call https://media.mw.metropolia.fi/wbma/docs/#api-User-CheckUserName
   };
+  return {checkUser};
 };
 
 export {useMedia, useAuthentication, useUser};
