@@ -2,7 +2,6 @@ import React, {useContext} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import Home from '../views/Home';
 import Profile from '../views/Profile';
 import Single from '../views/Single';
