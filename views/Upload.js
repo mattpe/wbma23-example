@@ -129,7 +129,7 @@ const Upload = ({navigation}) => {
               onPress={pickFile}
             />
           ) : (
-            <Card.Text>Video</Card.Text>
+            <Card.Title>Video</Card.Title>
           )}
           <Controller
             control={control}
