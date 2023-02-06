@@ -16,7 +16,6 @@ const Single = ({route}) => {
     time_added: timeAdded,
     user_id: userId,
     media_type: type,
-    screeshot,
     file_id: fileId,
   } = route.params;
   const video = useRef(null);
@@ -38,7 +37,7 @@ const Single = ({route}) => {
     const likes = await getFavouritesByFileId(fileId);
     console.log('likes', likes);
     setLikes(likes);
-    // TODO: check if the current user id is included in the 'likesä array and
+    // TODO: check if the current user id is included in the 'likes' array and
     // set the 'userLikesIt' accordingly
   };
 
@@ -86,8 +85,6 @@ const Single = ({route}) => {
               console.log(error);
             }}
             isLooping
-            usePoster
-            posterSource={{uri: uploadsUrl + screeshot}}
           />
         )}
         <Card.Divider />
