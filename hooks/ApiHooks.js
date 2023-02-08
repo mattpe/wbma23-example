@@ -58,7 +58,7 @@ const useMedia = (myFilesOnly) => {
     try {
       return await doFetch(baseUrl + 'media', options);
     } catch (error) {
-      throw new Error('postUpload: ' + error.message);
+      throw new Error('postMedia: ' + error.message);
     }
   };
 
@@ -66,6 +66,7 @@ const useMedia = (myFilesOnly) => {
     try {
       return await doFetch(baseUrl + 'media/' + id, {
         headers: {'x-access-token': token},
+        method: 'delete',
       });
     } catch (error) {
       throw new Error('deleteMedia, ' + error.message);
@@ -84,7 +85,7 @@ const useMedia = (myFilesOnly) => {
     try {
       return await doFetch(baseUrl + 'media/' + id, options);
     } catch (error) {
-      throw new Error('putUpload: ' + error.message);
+      throw new Error('putMedia: ' + error.message);
     }
   };
 

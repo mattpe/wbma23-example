@@ -1,14 +1,16 @@
-import {AsyncStorage} from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {ButtonGroup} from '@rneui/base';
 import {Avatar, ListItem as RNEListItem} from '@rneui/themed';
 import PropTypes from 'prop-types';
 import {useContext} from 'react';
 import {Alert} from 'react-native';
 import {MainContext} from '../contexts/MainContext';
+import {useMedia} from '../hooks/ApiHooks';
 import {uploadsUrl} from '../utils/variables';
 
 const ListItem = ({singleMedia, navigation}) => {
-  const {user} = useContext(MainContext);
+  const {user, setUpdate, update} = useContext(MainContext);
+  const {deleteMedia} = useMedia();
   const item = singleMedia;
 
   const doDelete = () => {
@@ -20,10 +22,13 @@ const ListItem = ({singleMedia, navigation}) => {
           onPress: async () => {
             const token = await AsyncStorage.getItem('userToken');
             const response = await deleteMedia(item.file_id, token);
+            response && setUpdate(!update);
           },
         },
       ]);
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -46,7 +51,7 @@ const ListItem = ({singleMedia, navigation}) => {
               if (index === 0) {
                 console.log('Modify pressed');
               } else {
-                console.log('Delete pressed');
+                doDelete();
               }
             }}
           />
