@@ -1,13 +1,31 @@
+import {AsyncStorage} from '@react-native-async-storage/async-storage';
 import {ButtonGroup} from '@rneui/base';
 import {Avatar, ListItem as RNEListItem} from '@rneui/themed';
 import PropTypes from 'prop-types';
 import {useContext} from 'react';
+import {Alert} from 'react-native';
 import {MainContext} from '../contexts/MainContext';
 import {uploadsUrl} from '../utils/variables';
 
 const ListItem = ({singleMedia, navigation}) => {
   const {user} = useContext(MainContext);
   const item = singleMedia;
+
+  const doDelete = () => {
+    try {
+      Alert.alert('Delete', 'this file permanently', [
+        {text: 'Cancel'},
+        {
+          text: 'OK',
+          onPress: async () => {
+            const token = await AsyncStorage.getItem('userToken');
+            const response = await deleteMedia(item.file_id, token);
+          },
+        },
+      ]);
+    } catch (error) {}
+  };
+
   return (
     <RNEListItem
       onPress={() => {
