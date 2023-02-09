@@ -179,6 +179,7 @@ const Single = ({route}) => {
         onRequestClose={() => {
           setModalVisible(!modalVisible);
         }}
+        supportedOrientations={['portrait', 'landscape']}
       >
         <Image
           resizeMode="contain"
